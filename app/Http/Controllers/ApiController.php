@@ -447,11 +447,12 @@ public function savePost(Request $request){
 public function postList(){
     $posts=Post::join('users','users.id','=','posts.user_id')
     ->select('posts.*','users.name','users.email','users.image as user_image')
-    ->orderBy('posts.id','ASC')->get();
+    ->orderBy('posts.id','DESC')->get();
 
     $postList=[]; 
     if(count($posts)==0){
         $post['id']                          = '';
+        $post['user_id']                    = '';
         $post['title']                       = '';
         $post['description']                 = '';
         $post['image']                       = '';
@@ -467,6 +468,7 @@ public function postList(){
        
             $post['id']                          = $postItem->id;
             $post['title']                       = $postItem->title;
+            $post['user_id']                    =  $postItem->user_id;
             $post['description']                 = $postItem->description;
             
             if($postItem->image != null){
