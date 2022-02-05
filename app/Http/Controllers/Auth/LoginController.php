@@ -7,6 +7,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 class LoginController extends Controller
 
 {
@@ -26,28 +28,34 @@ class LoginController extends Controller
     // }
 
     use AuthenticatesUsers;
-    
+
 public function login(Request $request)
     {
         // Check validation
         $this->validate($request, [
-            // 'phone_no' => 'required|regex:/[0-9]{10}/|digits:10',            
+            // 'phone_no' => 'required|regex:/[0-9]{10}/|digits:10',
         ]);
 
         // Get user record
         $user = User::where('phone_no', $request->get('phone_no'))->first();
 
         // Check Condition Mobile No. Found or Not
-        if($request->get('phone_no') != $user->phone_no) {
-            \Session::put('errors', 'Your mobile number not match in our system..!!');
+        if(!blank($user)){
+            if($request->get('phone_no') == $user->phone_no && Hash::check($request->get('password'), $user->password)) {
+
+                // Set Auth Details
+                \Auth::login($user);
+
+                // Redirect home page
+                return redirect()->route('dashboard');
+            }
+            \Session::put('errors', 'Your mobile number or password not match in our system..!!');
             return back();
-        }        
-        
-        // Set Auth Details
-        \Auth::login($user);
-        
-        // Redirect home page
-        return redirect()->route('dashboard');
+
+        }else{
+            \Session::put('errors', 'Your mobile number or password not match in our system..!!');
+            return back();
+        }
     }
 
     /**

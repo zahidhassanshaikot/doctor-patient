@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -28,12 +28,12 @@
     {{-- select teg --}}
     <link rel="stylesheet" href="{{ asset('css')}}/bootstrap-tagsinput.css">
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rainbow/1.2.0/themes/github.css"> --}}
-    
-    <link rel="stylesheet" href="{{ asset('css/flatpickr.min.css') }}"> 
 
-    <!-- Latest compiled and minified CSS --> 
+    <link rel="stylesheet" href="{{ asset('css/flatpickr.min.css') }}">
+
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
-    
+
     <!-- tinymce Css-->
     <link href="{{ asset('assets')}}/vendor/tinymce/skins/lightgray/skin.min.css" rel="stylesheet" />
 
@@ -41,8 +41,8 @@
     <link href="{{ asset('/') }}Select2/css/select2.css" rel="stylesheet" />
 
     @yield('style')
-    
-    <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+
+    <title>Zero Hours Medical Service</title>
 </head>
 
 <body>
@@ -53,7 +53,7 @@
         <!-- ============================================================== -->
         <!-- navbar -->
         <!-- ============================================================== -->
-        
+
         @include('back-end.includes.header')
         <!-- ============================================================== -->
         <!-- end navbar -->
@@ -62,14 +62,14 @@
         <!-- left sidebar -->
         <!-- ============================================================== -->
         @include('back-end.includes.left-slidebar')
-        
+
         <!-- ============================================================== -->
         <!-- end left sidebar -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
         <!-- wrapper  -->
         <!-- ============================================================== -->
-        
+
         <div class="dashboard-wrapper">
             <div class="dashboard-ecommerce">
                 @yield('main-content')
@@ -96,8 +96,8 @@
     <script src="{{ asset("assets") }}/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
 
-    
-    <!-- Tinemce -->  
+
+    <!-- Tinemce -->
     <script src="{{asset('assets/vendor/tinymce/tinymce.min.js')}}"></script>
     <script>
          //TinyMCE
@@ -159,7 +159,7 @@ const fp = flatpickr(".date", {
     minDate: "today",
     weekNumbers: true,
     minTime: "now",
-    
+
 });
 </script>
 
@@ -169,14 +169,14 @@ const fp = flatpickr(".date", {
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
 
 
-    
-    
+
+
     <!-- ajax modal  -->
     <div id="common-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
         <div class="modal-dialog">
             <div class="modal-content p-0 b-0">
             <div class="panel panel-color panel-primary">
-           
+
 
                 <div class="modal-header">
                         <h5 class="modal-title" id="common-modal-title">Title</h5>
@@ -187,16 +187,16 @@ const fp = flatpickr(".date", {
 
                 <div class="modal-body">
                 <div id="modal-loader" style="display: none; text-align: center;"> <img src="{{asset('/preloader.gif')}}" /> </div>
-                
+
                 <!-- content will be load here -->
                 <div id="dynamic-content"></div>
                 </div>
-                
+
             </div>
             </div>
         </div>
         </div>
-        <!-- /.modal --> 
+        <!-- /.modal -->
         <script>
             $(document).ready(function() {
                 $(document).on('click', '.modal-menu', function(e) {
@@ -216,8 +216,8 @@ const fp = flatpickr(".date", {
                     .done(function(data) {
                         console.log(data);
                         $('#dynamic-content').html('');
-                        $('#dynamic-content').html(data); // load response 
-                        $('#modal-loader').hide(); // hide ajax loader 
+                        $('#dynamic-content').html(data); // load response
+                        $('#modal-loader').hide(); // hide ajax loader
                     })
                     .fail(function() {
                         $('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
@@ -229,7 +229,7 @@ const fp = flatpickr(".date", {
         <!-- END Ajax modal  -->
         @yield('modal')
 
-        
+
         <script>
         setTimeout(function(){
         $('#success_m').fadeOut('slow');
@@ -241,8 +241,8 @@ const fp = flatpickr(".date", {
             $('#mySelect').selectpicker();
          </script>
         <script src="{{ asset('assets/vendor/parsley/parsley.js') }}"></script>
-        
-         
+
+
         <script>
             $('form').parsley();
         </script>
@@ -250,7 +250,7 @@ const fp = flatpickr(".date", {
       <script>
         $('#mail_driver').on('change',function(){
 
-            if( $(this).val()==="smtp"){ 
+            if( $(this).val()==="smtp"){
                 $("#sendMailDiv").hide();
                 $("#smtpDiv").show();
             }
@@ -258,7 +258,7 @@ const fp = flatpickr(".date", {
                 $("#sendMailDiv").show();
                 $("#smtpDiv").hide();
             }
-        }); 
+        });
     </script>
 
 
@@ -281,5 +281,5 @@ const fp = flatpickr(".date", {
         @yield('script')
 
 </body>
- 
+
 </html>

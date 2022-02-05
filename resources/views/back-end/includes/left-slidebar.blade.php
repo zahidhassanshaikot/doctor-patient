@@ -12,16 +12,25 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @yield('dashboard')" href="{{route('dashboard')}}">
-                            <i class="fa fa-fw fa-user-circle"></i>{{__('dashboard')}}
+                            <i class="fa fa-fw fa-user-circle"></i>{{__('Dashboard')}}
                         </a>
                     </li>
-                    
+                    <li class="nav-item">
+                        <a class="nav-link @yield('doctor-list')" href="{{route('doctor-list')}}">
+                            <i class="fa fa-fw fa-user-circle"></i>Doctor List
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @yield('patient-list')" href="{{route('patient-list')}}">
+                            <i class="fa fa-fw fa-user-circle"></i>Patient List
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link @yield('user-list')" href="{{route('user-list')}}">
                             <i class="fa fa-fw fa-user-circle"></i>User List
                         </a>
                     </li>
-                    
+
                 </ul>
             </div>
         </nav>

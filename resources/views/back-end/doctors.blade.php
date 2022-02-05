@@ -2,7 +2,7 @@
 @extends('back-end.layouts.master')
 <!-- active menu -->
 
-@section('user-list')
+@section('doctor-list')
     active
 @endsection
 
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="block-header col-6">
-                                            <h2>{{ __('users') }}</h2>
+                                            <h2>{{ __('Doctors') }}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -45,7 +45,8 @@
                                             <th>{{ __('Name') }}</th>
                                             <th>{{ __('Email') }}</th>
                                             <th>{{ __('Phone No') }}</th>
-                                            <th>{{ __('User Type') }}</th>
+                                            <th>{{ __('Reg No') }}</th>
+                                            <th>{{ __('Status') }}</th>
                                             <th>{{ __('Option') }}</th>
                                         </tr>
                                         </thead>
@@ -55,26 +56,39 @@
                                             <tr role="row" id="row_{{ $user->id }}" class="odd">
                                                 <td class="sorting_1">{{ $user->id}}</td>
 
-                                                <td>{{ $user->name}} </td>
-                                                <td> {{$user->email}}</br> </td>
-                                                <td> {{$user->phone_no}}</br> </td>
-                                                <td>
+                                                <td>{{ $user->name}}
                                                     @if($user->doctor==1)
-                                                    {{'Doctor'}}</br>
+                                                        <small class="text-success">({{ __('doctor') }})</small>
                                                     @endif
                                                     @if($user->admin==1)
-                                                    {{'Admin'}}</br>
+                                                        <small class="text-success">({{ __('admin') }})</small>
                                                     @endif
-                                                    @if($user->admin == 0 && $user->doctor ==0)
-                                                    {{'Patient'}}</br>
+                                                </td>
+                                                <td> {{$user->email}}</br> </td>
+                                                <td> {{$user->phone_no}}</br> </td>
+                                                <td> {{$user->reg_no}}</br> </td>
+                                                <td>
+                                                    @if($user->approve==0)
+                                                        <small class="text-warning">({{ __('Not Approved') }})</small>
+                                                    @else
+                                                        <small class="text-success">({{ __('Approved') }})</small>
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('delete-user',['id'=>$user->id]) }}"class="text-danger">
-                                                        <i class="fa fa-trash option-icon"></i>
-                                                    </a>
+                                                        @if($user->doctor==1 )
+                                                            @if( $user->approve==0 )
+                                                                <a href="{{ route('approve',['id'=>$user->id]) }}"class="text-success">
+                                                                    <i class="fa fa-check option-icon"></i>
+                                                                        {{ __('Approve') }}
+                                                                    </a>
+                                                            @else
+                                                                <a href="{{ route('not-approve',['id'=>$user->id]) }}"class="text-danger">
+                                                                    <i class="fa fa-ban option-icon"></i>
+                                                                    {{ __('Not Approve') }}
+                                                                </a>
+                                                            @endif
+                                                        @endif
                                                 </td>
-
                                             </tr>
                                         @endforeach
                                         </tbody>

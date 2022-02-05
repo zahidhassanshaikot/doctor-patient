@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -34,31 +34,32 @@
     <!-- ============================================================== -->
     <div class="splash-container">
         <div class="card ">
-            <div class="card-header text-center"><a href="{{ asset('/') }}index.html"><img class="logo-img" src="{{ asset('/') }}assets/images/logo.png" alt="logo"></a><span class="splash-description">Please enter your user information.</span></div>
+            <div class="card-header text-center"><a href="{{ route('login') }}">Zero Hours Medical Service</a><span class="splash-description">Please enter your user information.</span></div>
             <div class="card-body">
 
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="form-group">
-                        <input class="form-control form-control-lg @error('phone_no') is-invalid @enderror" name="phone_no" value="{{ old('phone_no') }}" required autocomplete="phone_no" autofocus id="phone_no" type="number" placeholder="Phone No" autocomplete="off">
+                        <input class="form-control form-control-lg @if(session('error')) is-invalid @endif" name="phone_no" value="{{ old('phone_no') }}" required autocomplete="phone_no" autofocus id="phone_no" type="number" placeholder="Phone No" autocomplete="off">
 
-                        @error('phone_no')
+
+                        @if(session('errors'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                                <strong>{{ session('errors') }}</strong>
                             </span>
-                        @enderror
+                        @endif
 
                     </div>
                     <div class="form-group">
                         {{-- <input class="form-control form-control-lg" id="password" type="password" placeholder="Password"> --}}
-                        <input id="password" type="password" class="form-control form-control-lg @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+                        <input id="password" type="password" class="form-control form-control-lg @if(session('errors')) is-invalid @endif" name="password" required autocomplete="current-password" placeholder="Password">
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        @if(session('errors'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ session('errors') }}</strong>
+                            </span>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label class="custom-control custom-checkbox">
@@ -84,7 +85,7 @@
             </div>
         </div>
     </div>
-  
+
     <!-- ============================================================== -->
     <!-- end login page  -->
     <!-- ============================================================== -->
@@ -92,5 +93,5 @@
     <script src="{{ asset('/') }}assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <script src="{{ asset('/') }}assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 </body>
- 
+
 </html>

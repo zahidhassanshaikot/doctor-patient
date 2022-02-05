@@ -16,9 +16,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-
-        return view('back-end.dashboard.dashboard');
+        $doctors    = User::orderBy('id','ASC')->where('doctor',1)->count();
+        $patients   = User::orderBy('id','ASC')->where('doctor',0)->where('admin',0)->count();
+        return view('back-end.dashboard.dashboard',compact('patients','doctors'));
     }
 
-    
+
 }

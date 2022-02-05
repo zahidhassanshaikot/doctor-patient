@@ -2,7 +2,7 @@
 @extends('back-end.layouts.master')
 <!-- active menu -->
 
-@section('user-list')
+@section('patients-list')
     active
 @endsection
 
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="block-header col-6">
-                                            <h2>{{ __('users') }}</h2>
+                                            <h2>{{ __('Patients') }}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -45,8 +45,6 @@
                                             <th>{{ __('Name') }}</th>
                                             <th>{{ __('Email') }}</th>
                                             <th>{{ __('Phone No') }}</th>
-                                            <th>{{ __('User Type') }}</th>
-                                            <th>{{ __('Option') }}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -54,27 +52,9 @@
 
                                             <tr role="row" id="row_{{ $user->id }}" class="odd">
                                                 <td class="sorting_1">{{ $user->id}}</td>
-
                                                 <td>{{ $user->name}} </td>
                                                 <td> {{$user->email}}</br> </td>
                                                 <td> {{$user->phone_no}}</br> </td>
-                                                <td>
-                                                    @if($user->doctor==1)
-                                                    {{'Doctor'}}</br>
-                                                    @endif
-                                                    @if($user->admin==1)
-                                                    {{'Admin'}}</br>
-                                                    @endif
-                                                    @if($user->admin == 0 && $user->doctor ==0)
-                                                    {{'Patient'}}</br>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <a href="{{ route('delete-user',['id'=>$user->id]) }}"class="text-danger">
-                                                        <i class="fa fa-trash option-icon"></i>
-                                                    </a>
-                                                </td>
-
                                             </tr>
                                         @endforeach
                                         </tbody>
